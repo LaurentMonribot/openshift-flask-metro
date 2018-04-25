@@ -48,7 +48,7 @@ def hello():
     errorphrase = "Uh oh, can't connect. Invalid dbname, user or password?"
     try:
         # BEGIN WITH THE OPENSHIFT POD
-        dbname = os.environ.get("POSTGRESQL_DBNAME","NOT FOUND")
+        dbname = os.environ.get("POSTGRESQL_DATABASE","NOT FOUND")
         user =  os.environ.get("POSTGRESQL_USER","NOT FOUND")
         host =  os.environ.get("POSTGRESQL_SERVICE_HOST","NOT FOUND")
         password= os.environ.get("POSTGRESQL_PASSWORD","NOT FOUND")
