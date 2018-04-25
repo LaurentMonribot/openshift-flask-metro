@@ -79,25 +79,25 @@ def hello():
 
 
         try:
-            for x in slist :
-                pat = "[0-9]+$"             #expression régulière à utiliser
-                str = x[1].pop()
-                nombres = re.findall("\d+", str) # recherche tous les décimals
-                numline=nombres.pop()
+            # for x in slist :
+            #     pat = "[0-9]+$"             #expression régulière à utiliser
+            #     str = x[1].pop()
+            #     nombres = re.findall("\d+", str) # recherche tous les décimals
+            #     numline=nombres.pop()
+            #
+            #     cursor.execute("""INSERT INTO metro_data (name,ligne) VALUES (%s,%s::integer)""", (x[0], numline))
 
-                cursor.execute("""INSERT INTO metro_data (name,ligne) VALUES (%s,%s::integer)""", (x[0], numline))
-
-            # strquery="SELECT * FROM metro_data"
-            # cursor.execute(strquery)
-            # result=cursor.fetchall()
-            # print(result)
+            strquery="SELECT * FROM metro_data"
+            cursor.execute(strquery)
+            result=cursor.fetchall()
+            print(result)
 
         except (Exception, psycopg2.DatabaseError) as error:
             print(error)
-        conn.commit()
+        # conn.commit()
 
-        return 'Total of stations is {}'.format(nb_stations)
-        # return 'Stations are {}'.format(result)
+        # return 'Total of stations is {}'.format(nb_stations)
+        return 'Stations are {}'.format(result)
     except (Exception, psycopg2.DatabaseError) as error:
         print(error)
     return errorphrase
