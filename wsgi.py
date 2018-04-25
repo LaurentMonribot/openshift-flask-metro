@@ -58,30 +58,30 @@ def hello():
     print("Connected!\n")
 
 
-    #slist =  stations_web_crawling()
-    #nb_stations = len(slist)
+    slist =  stations_web_crawling()
+    nb_stations = len(slist)
 
 
     try:
-        # for x in slist :
-        #     pat = "[0-9]+$"             #expression régulière à utiliser
-        #     str = x[1].pop()
-        #     nombres = re.findall("\d+", str) # recherche tous les décimals
-        #     numline=nombres.pop()
-        #
-        #     cursor.execute("""INSERT INTO metro_data (name,ligne) VALUES (%s,%s::integer)""", (x[0], numline))
+        for x in slist :
+            pat = "[0-9]+$"             #expression régulière à utiliser
+            str = x[1].pop()
+            nombres = re.findall("\d+", str) # recherche tous les décimals
+            numline=nombres.pop()
 
-        strquery="SELECT * FROM metro_data"
-        cursor.execute(strquery)
-        result=cursor.fetchall()
-        print(result)
+            cursor.execute("""INSERT INTO metro_data (name,ligne) VALUES (%s,%s::integer)""", (x[0], numline))
+
+        # strquery="SELECT * FROM metro_data"
+        # cursor.execute(strquery)
+        # result=cursor.fetchall()
+        # print(result)
 
     except (Exception, psycopg2.DatabaseError) as error:
         val = error
-    # conn.commit()
+    conn.commit()
 
-    #return 'Total of stations is {}'.format(nb_stations)
-    return 'Stations are {}'.format(result)
+    return 'Total of stations is {}'.format(nb_stations)
+    # return 'Stations are {}'.format(result)
 
 
 if __name__ == "__main__":
