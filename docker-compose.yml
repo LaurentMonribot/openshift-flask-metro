@@ -1,0 +1,13 @@
+version: '3'
+services:
+  postgres:
+    hostname: postgres
+    image: postgres
+    ports:
+     - 5432:5432
+    volumes:
+     - /opt/postgres/data:/var/lib/postgresql/data
+    environment:
+     POSTGRES_USER: metro
+     POSTGRES_PASSWORD: metro
+     POSTGRES_DBNAME: metro
