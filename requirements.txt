@@ -2,3 +2,4 @@ gunicorn
 Flask
 bs4
 requests
+psycopg2
