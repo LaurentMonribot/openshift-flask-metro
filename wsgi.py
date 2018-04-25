@@ -6,7 +6,6 @@ from bs4 import BeautifulSoup
 import psycopg2
 import sys
 import re
-import os
 
 application = Flask(__name__)
 
