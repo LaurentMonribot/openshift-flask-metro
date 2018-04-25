@@ -44,14 +44,26 @@ def stations_web_crawling():
 
 @application.route("/")
 def hello():
-    # Define our connection string
-    conn_string = "host='localhost' dbname='metro' user='metro' password='metro'"
+    try:
+        dbname = os.environ.get("POSTGRESQL_DBNAME","NOT FOUND")
+        user =  os.environ.get("POSTGRESQL_USER","NOT FOUND")
+        host =  os.environ.get("POSTGRESQL_SERVICE_HOST","NOT FOUND")
+        password= os.environ.get("POSTGRESQL_PASSWORD","NOT FOUND")
+        port=os.environ.get("POSTGRESQL_SERVICE_PORT","NOT FOUND")
+        connect_str = "dbname={} user={} host={} port={} password={}".format(dbname,user,host,port,password)
+        # use our connection values to establish a connection
+        conn = psycopg2.connect(connect_str)
+    except Exception as e:
+        print("Uh oh, can't connect. Invalid dbname, user or password?")
 
-    # print the connection string we will use to connect
-    print("Connecting to database\n	->%s" % (conn_string))
-
-    # get a connection, if a connect cannot be made an exception will be raised here
-    conn = psycopg2.connect(conn_string)
+    # # Define our connection string
+    # conn_string = "host='localhost' dbname='metro' user='metro' password='metro'"
+    #
+    # # print the connection string we will use to connect
+    # print("Connecting to database\n	->%s" % (conn_string))
+    #
+    # # get a connection, if a connect cannot be made an exception will be raised here
+    # conn = psycopg2.connect(conn_string)
 
     # conn.cursor will return a cursor object, you can use this cursor to perform queries
     cursor = conn.cursor()
