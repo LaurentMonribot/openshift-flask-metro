@@ -93,14 +93,13 @@ def hello():
             # print(result)
 
         except (Exception, psycopg2.DatabaseError) as error:
-            val = error
+            print(error)
         conn.commit()
 
         return 'Total of stations is {}'.format(nb_stations)
         # return 'Stations are {}'.format(result)
-    except Exception as e:
-        print(e)
-        print(errorphrase)
+    except (Exception, psycopg2.DatabaseError) as error:
+        print(error)
     return errorphrase
 
 if __name__ == "__main__":
