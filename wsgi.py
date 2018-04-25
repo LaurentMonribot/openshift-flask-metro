@@ -99,6 +99,7 @@ def hello():
         return 'Total of stations is {}'.format(nb_stations)
         # return 'Stations are {}'.format(result)
     except Exception as e:
+        print(e)
         print(errorphrase)
     return errorphrase
 
